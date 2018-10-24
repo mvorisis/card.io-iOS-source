@@ -215,8 +215,7 @@
 - (void)layoutSubviews {
   [self updateCameraOrientation];
 
-  CGRect cameraPreviewFrame = [self cameraPreviewFrame];
-
+  CGRect cameraPreviewFrame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
   SuppressCAAnimation(^{
     if (!CGRectEqualToRect(self.videoStream.previewLayer.frame, cameraPreviewFrame)) {
       self.videoStream.previewLayer.frame = cameraPreviewFrame;
@@ -225,7 +224,7 @@
 
     [self layoutCameraButtons];
 
-    self.cardGuide.frame = cameraPreviewFrame;
+    self.cardGuide.frame = [self cameraPreviewFrame];
   });
 }
 
